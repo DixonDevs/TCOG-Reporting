@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->foreignId('role_id')->constrained('roles'); // Use role_id and reference roles table
             $table->foreignId('church_id')->nullable()->constrained('churches');
             $table->foreignId('district_id')->nullable()->constrained('districts');
             $table->foreignId('state_id')->nullable()->constrained('states');
@@ -24,6 +25,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
